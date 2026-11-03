@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REDD Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-default-mode="credit">
+    <img src="logo.png" class="logo" alt="Logo">
+
+    <div class="container">
+        <h1 id="pageTitle">Late Fee Calculator</h1>
+        <p class="subtitle" id="pageSubtitle">Late Fee Calculation System</p>
+
+        <div class="mode-switch" role="tablist" aria-label="Calculator mode">
+            <button type="button" class="mode-btn active" data-mode="late" id="modeLate">Late Fee</button>
+            <button type="button" class="mode-btn" data-mode="credit" id="modeCredit">Credit</button>
+        </div>
+
+        <div class="form-group">
+            <label id="amountLabel">Booking Amount (THB)</label>
+            <input type="number" id="amount" placeholder="Enter amount">
+        </div>
+
+        <div class="form-group credit-only hidden">
+            <label>Start Date</label>
+            <div class="input-icon-wrapper">
+                <input type="text" id="startDate" placeholder="Select Date" readonly>
+                <span class="icon">📅</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="endDateLabel">Contract End Date</label>
+            <div class="input-icon-wrapper">
+                <input type="text" id="endDate" placeholder="Select Date" readonly>
+                <span class="icon">📅</span>
+            </div>
+        </div>
+
+        <div class="form-group late-only">
+            <label>Current Date (Today)</label>
+            <div class="input-icon-wrapper">
+                <input type="text" id="today" placeholder="Select Date" readonly>
+                <span class="icon">📅</span>
+            </div>
+        </div>
+
+        <div class="form-group credit-only hidden">
+            <label>Actual Move-out Date</label>
+            <div class="input-icon-wrapper">
+                <input type="text" id="moveoutDate" placeholder="Select Date" readonly>
+                <span class="icon">📅</span>
+            </div>
+        </div>
+
+        <button type="button" id="calculateBtn">Calculate</button>
+
+        <div id="result" class="result-card hidden"></div>
+        <div id="breakdown"></div>
+    </div>
+
+    <div class="date-picker-overlay" id="datePickerOverlay">
+        <div class="date-picker">
+            <div class="date-picker-header">
+                <h3 id="pickerTitle">Select Date</h3>
+                <div class="year-month-selector">
+                    <button type="button" class="arrow-btn" onclick="changeMonth(-1)">&lt;</button>
+                    <div class="month-selector" id="monthDisplay">January</div>
+                    <div class="year-selector">
+                        <div class="year-display" id="yearDisplay">
+                            <span id="yearText">2026</span>
+                        </div>
+                        <div class="year-dropdown" id="yearDropdown"></div>
+                    </div>
+                    <button type="button" class="arrow-btn" onclick="changeMonth(1)">&gt;</button>
+                </div>
+            </div>
+
+            <div class="month-grid" id="monthGrid"></div>
+
+            <div class="day-grid" id="dayGrid">
+                <div class="weekdays">
+                    <div class="weekday">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                </div>
+                <div class="days" id="daysContainer"></div>
+            </div>
+
+            <div class="date-picker-footer">
+                <button type="button" class="btn-cancel" onclick="closeDatePicker()">Cancel</button>
+                <button type="button" onclick="confirmDate()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
